@@ -1,0 +1,106 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║                    🚀 COPY AND RUN THIS COMMAND 🚀                   ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+I can't run sudo commands without your password, so please copy and paste
+this ONE command in your terminal:
+
+┌────────────────────────────────────────────────────────────────────┐
+│                                                                    │
+│  cd /mnt/c/Users/401-24/Desktop/Ab_generative_model && bash RUN_THIS.sh  │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘
+
+What this does:
+  1. Installs pip
+  2. Installs PyTorch
+  3. Tests the model
+  4. Trains tiny model (10 minutes)
+  5. Done! Your first antibody generator is ready!
+
+────────────────────────────────────────────────────────────────────
+
+ALTERNATIVE - If the above doesn't work, run these commands one by one:
+
+sudo apt-get update
+sudo apt-get install -y python3-pip
+pip3 install torch --index-url https://download.pytorch.org/whl/cpu --user
+cd /mnt/c/Users/401-24/Desktop/Ab_generative_model
+python3 scripts/train_generative.py --stage tiny
+
+────────────────────────────────────────────────────────────────────
+
+WINDOWS USERS: Open WSL/Ubuntu terminal first, then run the command above.
+
+To open WSL:
+  1. Press Windows Key
+  2. Type "Ubuntu" or "WSL"
+  3. Press Enter
+  4. Paste the command above
+
+────────────────────────────────────────────────────────────────────
+
+WHAT TO EXPECT:
+
+After running the command, you'll see:
+
+Step 1/5: Installing pip...
+✅ pip installed
+
+Step 2/5: Installing PyTorch (this takes a few minutes)...
+✅ PyTorch installed
+
+Step 3/5: Verifying PyTorch...
+✅ PyTorch 2.x.x ready!
+
+Step 4/5: Testing LSTM model...
+✅ All model tests passed!
+
+Step 5/5: Training tiny model (10 minutes)...
+Starting training on 1,000 samples...
+
+Training Generative Model - Stage: TINY
+Epoch   1/10: Train Loss: 3.2156 | Val Loss: 3.1024 | Time: 8.2s
+Epoch   2/10: Train Loss: 2.8942 | Val Loss: 2.7531 | Time: 7.9s
+...
+Epoch  10/10: Train Loss: 1.2345 | Val Loss: 1.3421 | Time: 8.1s
+
+✅ Training Complete!
+Total time: 1.3 minutes
+Model saved to: models/generative/tiny
+
+🎉 ALL DONE! 🎉
+
+────────────────────────────────────────────────────────────────────
+
+AFTER TRAINING:
+
+Your first antibody generator is trained and ready!
+
+To use it, see examples in: README.md
+
+To train bigger models:
+  python3 scripts/train_generative.py --stage small  (1-2 hours)
+  python3 scripts/train_generative.py --stage full   (10-20 hours)
+
+────────────────────────────────────────────────────────────────────
+
+NEED HELP?
+
+Read these files:
+  - README.md (complete guide)
+  - READY_TO_RUN.md (quick start)
+  - QUICK_START_COMMANDS.txt (all commands)
+
+Check status:
+  python3 check_status.py
+
+────────────────────────────────────────────────────────────────────
+
+🚀 COPY THE COMMAND AT THE TOP AND RUN IT NOW! 🚀
+
+Location: /mnt/c/Users/401-24/Desktop/Ab_generative_model/
+
+╔══════════════════════════════════════════════════════════════════════╗
+║  Everything is ready. Just run the command and wait 15-20 minutes!  ║
+╚══════════════════════════════════════════════════════════════════════╝

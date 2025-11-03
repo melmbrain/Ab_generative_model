@@ -1,0 +1,20 @@
+{
+  "total_antibodies": 20,
+  "successful_predictions": 20,
+  "failed_predictions": 0,
+  "mean_perplexity": 933.9211036682129,
+  "std_perplexity": 189.80331473289567,
+  "median_perplexity": 947.202392578125,
+  "min_perplexity": 205.01319885253906,
+  "max_perplexity": 1235.1768798828125,
+  "excellent_sequences": 0,
+  "good_sequences": 0,
+  "fair_sequences": 0,
+  "poor_sequences": 20,
+  "quality_distribution": {
+    "Excellent (<5)": 0,
+    "Good (5-10)": 0,
+    "Fair (10-20)": 0,
+    "Poor (>=20)": 20
+  }
+}

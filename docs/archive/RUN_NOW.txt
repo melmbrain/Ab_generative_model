@@ -1,0 +1,199 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║                    🚀 COPY THESE 3 COMMANDS 🚀                       ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+Just copy and paste these THREE commands into your terminal:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COMMAND 1: Install pip (will ask for password)
+┌────────────────────────────────────────────────────────────────────┐
+│ sudo apt-get update && sudo apt-get install -y python3-pip        │
+└────────────────────────────────────────────────────────────────────┘
+
+COMMAND 2: Install PyTorch (takes 5 minutes, no password needed)
+┌────────────────────────────────────────────────────────────────────┐
+│ pip3 install torch --index-url https://download.pytorch.org/whl/cpu --user │
+└────────────────────────────────────────────────────────────────────┘
+
+COMMAND 3: Train your first model! (takes 10 minutes)
+┌────────────────────────────────────────────────────────────────────┐
+│ cd /mnt/c/Users/401-24/Desktop/Ab_generative_model && python3 scripts/train_generative.py --stage tiny │
+└────────────────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+That's it! Three commands, ~20 minutes total, and you'll have your first
+antibody generator trained and ready to use!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT YOU'LL SEE:
+
+Command 1 output:
+[sudo] password for kroea: ← TYPE YOUR PASSWORD
+Reading package lists... Done
+Setting up python3-pip... Done
+✅ pip installed
+
+Command 2 output:
+Collecting torch
+  Downloading torch-2.x.x-cp310-cp310-linux_x86_64.whl (755 MB)
+     ████████████████████████████████ 755/755 MB
+Installing collected packages: torch
+✅ PyTorch installed
+
+Command 3 output:
+Training Generative Model - Stage: TINY
+Configuration:
+  n_samples: 1000
+  epochs: 10
+  batch_size: 16
+  model_config: tiny
+
+Loading dataset from: data/generative/train.json
+Loaded 1000 samples
+
+Creating tiny model...
+  Parameters: 1,234,567 (1.23M)
+
+Training for 10 epochs...
+Epoch   1/10: Train Loss: 3.2156 | Val Loss: 3.1024 | Time: 8.2s
+Epoch   2/10: Train Loss: 2.8942 | Val Loss: 2.7531 | Time: 7.9s
+Epoch   3/10: Train Loss: 2.6234 | Val Loss: 2.5123 | Time: 8.0s
+Epoch   4/10: Train Loss: 2.3891 | Val Loss: 2.3456 | Time: 8.1s
+Epoch   5/10: Train Loss: 2.1567 | Val Loss: 2.1234 | Time: 8.0s
+  ✅ Saved best model (val_loss: 2.1234)
+
+  Sample generations:
+    1. pKd=8.52
+       Generated: QVQLVQSGAEVKKPGSSVKVSCKASGGTSSSYAISWVRQAPG...
+    2. pKd=9.12
+       Generated: EVQLVESGGGLVQPGGSLRLSCAASGFTFSSYAMSWVRQAPGK...
+    3. pKd=7.88
+       Generated: DVQLVESGGGLVQPGRSLRLSCAASGFTFDDYAMHWVRQAPGK...
+
+Epoch   6/10: Train Loss: 1.9234 | Val Loss: 1.9876 | Time: 8.1s
+Epoch   7/10: Train Loss: 1.7123 | Val Loss: 1.8234 | Time: 8.0s
+Epoch   8/10: Train Loss: 1.5234 | Val Loss: 1.7123 | Time: 8.2s
+Epoch   9/10: Train Loss: 1.3567 | Val Loss: 1.5678 | Time: 8.1s
+Epoch  10/10: Train Loss: 1.2345 | Val Loss: 1.4321 | Time: 8.0s
+  ✅ Saved best model (val_loss: 1.4321)
+
+  Sample generations:
+    1. pKd=8.67
+       Generated: QVQLVQSGAEVKKPGSSVKVSCKASGGTSNSYAISWVRQAPGQG...
+    2. pKd=9.23
+       Generated: EVQLVESGGGLVQPGGSLRLSCAASGFTFSSYAMSWVRQAPGKG...
+    3. pKd=8.15
+       Generated: DVQLVESGGGLVQPGRSLRLSCAASGFTFDDYAMHWVRQAPGKG...
+
+✅ Training Complete!
+
+Summary:
+  Stage: TINY
+  Total time: 1.3 minutes
+  Best val loss: 1.4321
+  Final train loss: 1.2345
+  Model saved to: models/generative/tiny
+
+Next steps:
+  ✅ Verify model works
+  → Run: python3 scripts/train_generative.py --stage small
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AFTER TRAINING - GENERATE YOUR FIRST ANTIBODY:
+
+python3 << 'EOF'
+import torch
+from generators.lstm_seq2seq import create_model
+from generators.tokenizer import AminoAcidTokenizer
+
+# Load trained model
+model = create_model('tiny', vocab_size=25)
+checkpoint = torch.load('models/generative/tiny/best_model.pth')
+model.load_state_dict(checkpoint['model_state_dict'])
+model.eval()
+
+# Load tokenizer
+tokenizer = AminoAcidTokenizer()
+
+# Your virus antigen (example - use your own!)
+antigen_seq = "KVFGRCELAAAMKRHGLDNYRGYSL"
+antigen_tokens = torch.tensor([tokenizer.encode(antigen_seq)])
+
+# Request high-affinity antibody (pKd = 9.0)
+target_pKd = torch.tensor([[9.0]])
+
+# Generate!
+generated = model.generate(antigen_tokens, target_pKd)
+antibody = tokenizer.decode(generated[0].tolist())
+
+print("="*70)
+print("🎉 YOUR FIRST GENERATED ANTIBODY!")
+print("="*70)
+print(f"Antigen:  {antigen_seq}")
+print(f"Target pKd: 9.0")
+print(f"Generated antibody: {antibody}")
+print("="*70)
+EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THEN VALIDATE WITH DISCRIMINATOR:
+
+python3 << 'EOF'
+import torch
+from generators.lstm_seq2seq import create_model
+from generators.tokenizer import AminoAcidTokenizer
+from discriminator import AffinityDiscriminator
+
+# Load model
+model = create_model('tiny', vocab_size=25)
+checkpoint = torch.load('models/generative/tiny/best_model.pth')
+model.load_state_dict(checkpoint['model_state_dict'])
+model.eval()
+
+# Load discriminator and tokenizer
+disc = AffinityDiscriminator()
+tokenizer = AminoAcidTokenizer()
+
+# Generate 10 antibodies
+antigen = "KVFGRCELAAAMKRHGLDNYRGYSL"
+antigen_tokens = torch.tensor([tokenizer.encode(antigen)])
+target_pKd = torch.tensor([[9.0]])
+
+print("Generating 10 antibodies for your antigen...")
+print("="*70)
+
+for i in range(10):
+    # Generate
+    generated = model.generate(antigen_tokens, target_pKd)
+    antibody = tokenizer.decode(generated[0].tolist())
+
+    # Score with discriminator
+    score = disc.predict_single(antibody, antigen)
+
+    print(f"\n{i+1}. Generated Antibody:")
+    print(f"   Sequence: {antibody[:50]}...")
+    print(f"   Predicted pKd: {score['predicted_pKd']:.2f}")
+    print(f"   Predicted Kd: {score['predicted_Kd_nM']:.1f} nM")
+    print(f"   Category: {score['binding_category']}")
+
+print("\n" + "="*70)
+print("✅ Done! You now have 10 antibody candidates!")
+print("="*70)
+EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+READY? COPY THE 3 COMMANDS AT THE TOP AND RUN THEM! 🚀
+
+Location: /mnt/c/Users/401-24/Desktop/Ab_generative_model/
+
+Time needed: ~20 minutes total
+
+╔══════════════════════════════════════════════════════════════════════╗
+║  Your antibody generator is 3 commands away! Let's go! 🧬🚀          ║
+╚══════════════════════════════════════════════════════════════════════╝

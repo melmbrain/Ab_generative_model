@@ -1,0 +1,214 @@
+════════════════════════════════════════════════════════════════════════
+QUICK START - Copy and Paste These Commands
+════════════════════════════════════════════════════════════════════════
+
+OPTION 1: Automatic Installation (Recommended)
+────────────────────────────────────────────────────────────────────────
+Run this single command to install everything and start training:
+
+cd /mnt/c/Users/401-24/Desktop/Ab_generative_model
+bash install_and_run.sh
+
+
+OPTION 2: Manual Installation (Step by Step)
+────────────────────────────────────────────────────────────────────────
+
+Step 1: Install pip (if needed)
+────────────────────────────────
+sudo apt-get update
+sudo apt-get install -y python3-pip
+
+
+Step 2: Install PyTorch
+────────────────────────
+pip3 install torch --index-url https://download.pytorch.org/whl/cpu
+
+
+Step 3: Verify Installation
+────────────────────────────
+cd /mnt/c/Users/401-24/Desktop/Ab_generative_model
+python3 -c "import torch; print('PyTorch', torch.__version__, 'installed!')"
+
+
+Step 4: Test Tokenizer
+───────────────────────
+python3 generators/tokenizer.py
+
+
+Step 5: Test LSTM Model
+────────────────────────
+python3 generators/lstm_seq2seq.py
+
+
+Step 6: Train Tiny Model (~10 minutes)
+───────────────────────────────────────
+python3 scripts/train_generative.py --stage tiny
+
+
+Step 7: If Successful, Train Small Model (~1-2 hours)
+──────────────────────────────────────────────────────
+python3 scripts/train_generative.py --stage small
+
+
+Step 8: If Successful, Train Full Model (~10-20 hours)
+───────────────────────────────────────────────────────
+python3 scripts/train_generative.py --stage full
+
+
+════════════════════════════════════════════════════════════════════════
+WHAT TO EXPECT
+════════════════════════════════════════════════════════════════════════
+
+After Step 2 (Install PyTorch):
+✅ PyTorch 2.x.x installed!
+
+After Step 4 (Test Tokenizer):
+✅ All tests passed!
+
+After Step 5 (Test LSTM Model):
+TINY Configuration:
+  Parameters: 1,234,567 (1.23M)
+  ✅ TINY model working!
+...
+✅ All model tests passed!
+
+After Step 6 (Train Tiny - 10 minutes):
+Training Generative Model - Stage: TINY
+Configuration:
+  n_samples: 1000
+  epochs: 10
+  batch_size: 16
+  model_config: tiny
+
+Device: cpu
+
+Training for 10 epochs...
+Epoch   1/10: Train Loss: 3.2156 | Val Loss: 3.1024 | Time: 8.2s
+Epoch   2/10: Train Loss: 2.8942 | Val Loss: 2.7531 | Time: 7.9s
+...
+Epoch  10/10: Train Loss: 1.2345 | Val Loss: 1.3421 | Time: 8.1s
+  ✅ Saved best model (val_loss: 1.2987)
+
+Sample generations:
+  1. pKd=8.52
+     Generated: QVQLVQSGAEVKKPGSSVKVSCKASGGTSSSYAISWVRQ...
+
+✅ Training Complete!
+Total time: 1.3 minutes
+Best val loss: 1.2987
+Model saved to: models/generative/tiny
+
+
+════════════════════════════════════════════════════════════════════════
+VERIFICATION - What You Already Have
+════════════════════════════════════════════════════════════════════════
+
+✅ Data Preparation Complete:
+   - Train: 126,508 samples (data/generative/train.json)
+   - Val:   15,813 samples (data/generative/val.json)
+   - Test:  15,814 samples (data/generative/test.json)
+
+✅ Tokenizer Working:
+   - 25-token vocabulary
+   - Handles antibody pairs (heavy|light)
+   - Tested successfully
+
+✅ Code Complete:
+   - LSTM Seq2Seq model (4 sizes)
+   - Progressive training script
+   - Complete documentation
+
+⏳ Pending:
+   - PyTorch installation
+   - Model training
+
+
+════════════════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+════════════════════════════════════════════════════════════════════════
+
+If "pip3: command not found":
+→ Run: sudo apt-get install python3-pip
+
+If "Permission denied":
+→ Add sudo before the command
+
+If training is too slow:
+→ Use GPU version: pip3 install torch --index-url https://download.pytorch.org/whl/cu118
+→ Or use cloud GPU (Google Colab, AWS)
+
+If out of memory:
+→ Close other programs
+→ Reduce batch_size in scripts/train_generative.py
+
+
+════════════════════════════════════════════════════════════════════════
+NEXT AFTER TRAINING
+════════════════════════════════════════════════════════════════════════
+
+Once tiny model is trained, generate antibodies:
+
+python3 << EOF
+import torch
+from generators.lstm_seq2seq import create_model
+from generators.tokenizer import AminoAcidTokenizer
+
+# Load model
+model = create_model('tiny', vocab_size=25)
+checkpoint = torch.load('models/generative/tiny/best_model.pth')
+model.load_state_dict(checkpoint['model_state_dict'])
+model.eval()
+
+# Load tokenizer
+tokenizer = AminoAcidTokenizer()
+
+# Your antigen
+antigen_seq = "KVFGRCELAAAMKRHGLDNYRGYSL"  # Example
+antigen_tokens = torch.tensor([tokenizer.encode(antigen_seq)])
+
+# Generate antibody
+target_pKd = torch.tensor([[9.0]])
+generated = model.generate(antigen_tokens, target_pKd)
+antibody = tokenizer.decode(generated[0].tolist())
+
+print(f"Generated antibody: {antibody}")
+EOF
+
+
+════════════════════════════════════════════════════════════════════════
+ESTIMATED TIMES
+════════════════════════════════════════════════════════════════════════
+
+Installation (Steps 1-3):     5-10 minutes
+Testing (Steps 4-5):          1 minute
+Tiny training (Step 6):       10 minutes
+Small training (Step 7):      1-2 hours
+Full training (Step 8):       10-20 hours
+
+Total to production model:    12-23 hours (mostly training)
+
+
+════════════════════════════════════════════════════════════════════════
+SUPPORT
+════════════════════════════════════════════════════════════════════════
+
+Documentation:
+  - README.md
+  - SETUP_AND_NEXT_STEPS.md
+  - COMPUTE_OPTIMIZATION_STRATEGY.md
+
+All files are in: /mnt/c/Users/401-24/Desktop/Ab_generative_model/
+
+
+════════════════════════════════════════════════════════════════════════
+START NOW
+════════════════════════════════════════════════════════════════════════
+
+Copy this command and run it:
+
+cd /mnt/c/Users/401-24/Desktop/Ab_generative_model && bash install_and_run.sh
+
+Or run commands manually from OPTION 2 above.
+
+
+════════════════════════════════════════════════════════════════════════

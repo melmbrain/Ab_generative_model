@@ -1,0 +1,20 @@
+{
+  "total_antibodies": 20,
+  "successful_predictions": 20,
+  "failed_predictions": 0,
+  "mean_plddt": 92.62638430690188,
+  "std_plddt": 15.976944781234476,
+  "median_plddt": 100.0,
+  "min_plddt": 49.334525939177105,
+  "max_plddt": 100.0,
+  "excellent_structures": 16,
+  "good_structures": 18,
+  "fair_structures": 0,
+  "poor_structures": 2,
+  "quality_distribution": {
+    "Excellent (>90)": 16,
+    "Good (70-90)": 2,
+    "Fair (50-70)": 0,
+    "Poor (<50)": 2
+  }
+}

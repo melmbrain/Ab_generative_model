@@ -1,0 +1,109 @@
+========================================
+FULL TRAINING STARTED
+========================================
+
+Configuration:
+- Model: small (5.6M parameters)
+- Dataset: 126,508 training samples
+- Epochs: 20
+- Batch size: 16
+- Device: CPU
+- Name: production_full_v1
+
+Expected Timeline:
+- Each epoch: ~20-40 minutes
+- Total time: 6-12 hours (depends on CPU speed)
+- Will save checkpoints automatically
+
+Output Files:
+- Logs: logs/production_full_v1.jsonl
+- Checkpoints: checkpoints/production_full_v1_epoch*.pt
+- Best model will be saved automatically
+
+========================================
+HOW TO MONITOR PROGRESS
+========================================
+
+Option 1: Check log file
+  python3 monitor_training.py logs/production_full_v1.jsonl
+
+Option 2: View live in terminal
+  Training output shows in real-time
+
+Option 3: Check specific epoch
+  Look at terminal output or log file
+
+========================================
+WHAT TO EXPECT
+========================================
+
+Early Epochs (1-5):
+  Loss: 3.0 → 2.5
+  Validity: 100%
+  Diversity: 40% → 60%
+  Sequences: Repetitive patterns
+
+Mid Training (5-10):
+  Loss: 2.5 → 2.0
+  Validity: 100%
+  Diversity: 60% → 75%
+  Sequences: More structured
+
+Late Training (10-20):
+  Loss: 2.0 → 1.5-1.8
+  Validity: 98-100%
+  Diversity: 75-85%
+  Sequences: Realistic antibodies
+
+========================================
+IF YOU NEED TO STOP
+========================================
+
+Press Ctrl+C to stop training
+- Latest checkpoint is saved
+- Can resume later if needed
+- Early stopping will trigger automatically if no improvement
+
+========================================
+AFTER TRAINING COMPLETES
+========================================
+
+1. Find best checkpoint:
+   - Look at logs/production_full_v1.jsonl
+   - Best validation loss = best epoch
+   - File: checkpoints/production_full_v1_epoch[BEST].pt
+
+2. Evaluate results:
+   - Check final loss (target: <2.0)
+   - Check validity (target: >95%)
+   - Check diversity (target: >70%)
+
+3. Use for generation:
+   - Load best checkpoint
+   - Generate antibodies for new antigens
+
+========================================
+MONITORING COMMANDS
+========================================
+
+# View current progress
+python3 monitor_training.py logs/production_full_v1.jsonl
+
+# List all experiments
+python3 monitor_training.py list
+
+# Real-time log viewing (if you want)
+tail -f logs/production_full_v1.jsonl
+
+========================================
+ESTIMATED COMPLETION
+========================================
+
+Start time: Now
+Duration: 6-12 hours (CPU dependent)
+Check back: Every 1-2 hours
+
+You can leave this running and come back later!
+The checkpoints save automatically.
+
+========================================
