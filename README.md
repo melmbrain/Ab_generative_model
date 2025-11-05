@@ -110,7 +110,7 @@ print(f"Generated antibody: {antibody}")
 
 ```bash
 # After training completes, validate with ESMFold
-python validate_antibodies.py \
+python validation/validate_antibodies.py \
   --checkpoint checkpoints/improved_small_2025_10_31_best.pt \
   --num-samples 20 \
   --device cuda
@@ -121,8 +121,10 @@ python validate_antibodies.py \
 ```
 Ab_generative_model/
 ├── README.md                     # This file
+├── QUICK_START.md               # Quick start guide
+├── requirements.txt             # Python dependencies
 ├── train.py                      # Main training script
-├── validate_antibodies.py        # Validation pipeline
+├── run_pipeline_v3.py           # Latest pipeline (v3)
 │
 ├── generators/                   # Model code
 │   ├── transformer_seq2seq.py   # Transformer model
@@ -130,12 +132,36 @@ Ab_generative_model/
 │   ├── data_loader.py           # Data loading
 │   └── metrics.py               # Validation metrics
 │
-├── validation/                   # Validation tools
-│   └── structure_validation.py  # ESMFold validation
+├── validation/                   # Validation scripts
+│   ├── structure_validation.py  # ESMFold validation
+│   ├── validate_antibodies.py   # Antibody validation pipeline
+│   ├── validate_with_igfold.py  # IgFold validation
+│   └── web_epitope_validator.py # Epitope validation
 │
-├── data/generative/              # Training data
-│   ├── train.json               # 158k training pairs
-│   └── val.json                 # 15k validation pairs
+├── scripts/                      # Utility scripts
+│   ├── analysis/                # Analysis tools
+│   │   ├── analyze_current_model.py
+│   │   ├── analyze_training_data.py
+│   │   ├── monitor_training.py  # Training monitor
+│   │   └── check_status.py
+│   │
+│   ├── archive/                 # Old pipeline versions
+│   │   ├── epitope_predictor.py (v1)
+│   │   ├── run_pipeline_v2.py
+│   │   └── run_full_pipeline.py (v1)
+│   │
+│   └── [other scripts]          # Training helpers
+│
+├── notebooks/                    # Jupyter notebooks
+│   ├── IgFold_Complete_Validation.ipynb
+│   ├── IgFold_Fixed.ipynb
+│   └── IgFold_Validation_Colab.ipynb
+│
+├── data/                         # Data files
+│   ├── sars_cov2_spike.fasta    # Example antigen
+│   └── generative/              # Training data
+│       ├── train.json           # 158k training pairs
+│       └── val.json             # 15k validation pairs
 │
 ├── checkpoints/                  # Saved models
 │   └── improved_small_2025_10_31_best.pt  # Current best
@@ -152,7 +178,10 @@ Ab_generative_model/
 │   │   ├── COMPLETE_REFERENCES.bib
 │   │   └── VALIDATION_RESEARCH_COMPARISON.md
 │   │
-│   └── archive/                 # Old documentation
+│   └── archive/                 # Archived documentation
+│       ├── WEEK1_COMPLETION_SUMMARY.md
+│       ├── WEEK2_DAY1_COMPLETE.md
+│       └── [other progress docs]
 │
 └── logs/                         # Training logs
 ```
@@ -165,7 +194,7 @@ The model is currently training. To check progress:
 
 ```bash
 # View current progress
-python monitor_training.py logs/improved_small_2025_10_31.jsonl
+python scripts/analysis/monitor_training.py logs/improved_small_2025_10_31.jsonl
 
 # Or check checkpoints
 ls -lh checkpoints/
@@ -237,7 +266,7 @@ Output: Antibody Sequence (Heavy|Light)
 pip install fair-esm
 
 # Validate generated antibodies
-python validate_antibodies.py \
+python validation/validate_antibodies.py \
   --checkpoint checkpoints/improved_small_2025_10_31_best.pt \
   --num-samples 50 \
   --device cuda \
@@ -357,6 +386,12 @@ This is a research project. For questions or collaboration:
 - Review research log for methodology
 - See BibTeX file for citations
 
+## Author
+
+**Jaeseong Yoon**
+- GitHub: [@melmbrain](https://github.com/melmbrain)
+- Email: josh223@naver.com
+
 ## License
 
 Research and educational use.
@@ -391,10 +426,10 @@ If you use this model in your research, please cite:
 ```bibtex
 @software{antibody_gen_v1,
   title={Antibody Generation Model: Affinity-Conditioned Transformer},
-  author={Your Name},
+  author={Jaeseong Yoon},
   year={2025},
   version={1.0},
-  url={https://github.com/yourusername/Ab_generative_model},
+  url={https://github.com/melmbrain/Ab_generative_model},
   note={Mean pLDDT: 92.63, exceeding SOTA benchmarks}
 }
 ```
