@@ -1,8 +1,8 @@
-# Antibody Generation Model v1.0
+# Antibody Generation Model v2.0
 
 **Affinity-Conditioned Transformer for Antibody Sequence Generation**
 
-[![Version](https://img.shields.io/badge/version-1.0-blue)]()
+[![Version](https://img.shields.io/badge/version-2.0-blue)]()
 [![Status](https://img.shields.io/badge/status-production--ready-brightgreen)]()
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)]()
 [![PyTorch 2.5+](https://img.shields.io/badge/pytorch-2.5+-ee4c2c.svg)]()
@@ -408,6 +408,14 @@ See [RESEARCH_LOG.md](docs/research/RESEARCH_LOG.md) for full attribution.
 
 ## Version History
 
+### v2.0 (2025-11-05) - Repository Cleanup & Organization
+- ✅ Complete repository reorganization
+- ✅ Files organized into proper directories (scripts/, validation/, notebooks/, docs/archive/)
+- ✅ Documentation updated with new structure
+- ✅ Author information added (Jaeseong Yoon)
+- ✅ Pipeline v3 implementation complete
+- ✅ All validation tools properly organized
+
 ### v1.0 (2025-11-03) - Initial Release
 - ✅ Training complete: 20/20 epochs
 - ✅ Final val loss: 0.6532
@@ -424,11 +432,11 @@ See [RESEARCH_LOG.md](docs/research/RESEARCH_LOG.md) for full attribution.
 If you use this model in your research, please cite:
 
 ```bibtex
-@software{antibody_gen_v1,
+@software{antibody_gen_v2,
   title={Antibody Generation Model: Affinity-Conditioned Transformer},
   author={Jaeseong Yoon},
   year={2025},
-  version={1.0},
+  version={2.0},
   url={https://github.com/melmbrain/Ab_generative_model},
   note={Mean pLDDT: 92.63, exceeding SOTA benchmarks}
 }
@@ -436,4 +444,4 @@ If you use this model in your research, please cite:
 
 ---
 
-**Version**: 1.0 | **Status**: ✅ Production Ready | **Last Updated**: 2025-11-03
+**Version**: 2.0 | **Status**: ✅ Production Ready | **Last Updated**: 2025-11-05
