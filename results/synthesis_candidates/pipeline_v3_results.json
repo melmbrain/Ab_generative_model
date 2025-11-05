@@ -1,0 +1,241 @@
+{
+  "summary": {
+    "pipeline_version": "v3",
+    "virus_name": "SARS-CoV-2",
+    "antigen_name": "spike protein",
+    "antigen_length": 1275,
+    "config": {
+      "epitope_threshold": 0.6,
+      "epitope_window_sizes": [
+        10,
+        13,
+        15
+      ],
+      "top_k_epitopes": 5,
+      "top_k_antibodies": 3,
+      "target_pkd": 9.5,
+      "require_citations": true,
+      "min_citations": 1,
+      "device": "cuda",
+      "temperature": 0.5,
+      "top_k": 50,
+      "truncate_light": true,
+      "light_max_length": 109
+    },
+    "epitopes_predicted": 5,
+    "epitopes_validated": 0,
+    "antibodies_generated": 5,
+    "antibodies_valid_structure": 0,
+    "elapsed_time_seconds": 5.076356410980225,
+    "fixes_applied": {
+      "diversity_fix": "sampling_T0.5",
+      "light_chain_fix": "truncation_to_109aa"
+    }
+  },
+  "epitopes": [
+    {
+      "sequence": "CCKFDEDDSE",
+      "position": "1254-1264",
+      "start": 1254,
+      "end": 1264,
+      "length": 10,
+      "score": 0.7395,
+      "method": "sliding_window"
+    },
+    {
+      "sequence": "AVEQDKNTQE",
+      "position": "771-781",
+      "start": 771,
+      "end": 781,
+      "length": 10,
+      "score": 0.7274999999999999,
+      "method": "sliding_window"
+    },
+    {
+      "sequence": "DTTDAVRDPQ",
+      "position": "571-581",
+      "start": 571,
+      "end": 581,
+      "length": 10,
+      "score": 0.7144999999999999,
+      "method": "sliding_window"
+    },
+    {
+      "sequence": "DEDDSEPVLK",
+      "position": "1258-1268",
+      "start": 1258,
+      "end": 1268,
+      "length": 10,
+      "score": 0.7060000000000001,
+      "method": "sliding_window"
+    },
+    {
+      "sequence": "GRDIADTTDA",
+      "position": "566-576",
+      "start": 566,
+      "end": 576,
+      "length": 10,
+      "score": 0.6965,
+      "method": "sliding_window"
+    }
+  ],
+  "validated_epitopes": [
+    {
+      "epitope": {
+        "sequence": "CCKFDEDDSE",
+        "position": "1254-1264",
+        "start": 1254,
+        "end": 1264,
+        "length": 10,
+        "score": 0.7395,
+        "method": "sliding_window"
+      },
+      "validation": {
+        "is_validated": false,
+        "citations": 0,
+        "confidence": null
+      }
+    },
+    {
+      "epitope": {
+        "sequence": "AVEQDKNTQE",
+        "position": "771-781",
+        "start": 771,
+        "end": 781,
+        "length": 10,
+        "score": 0.7274999999999999,
+        "method": "sliding_window"
+      },
+      "validation": {
+        "is_validated": false,
+        "citations": 0,
+        "confidence": null
+      }
+    },
+    {
+      "epitope": {
+        "sequence": "DTTDAVRDPQ",
+        "position": "571-581",
+        "start": 571,
+        "end": 581,
+        "length": 10,
+        "score": 0.7144999999999999,
+        "method": "sliding_window"
+      },
+      "validation": {
+        "is_validated": false,
+        "citations": 0,
+        "confidence": null
+      }
+    },
+    {
+      "epitope": {
+        "sequence": "DEDDSEPVLK",
+        "position": "1258-1268",
+        "start": 1258,
+        "end": 1268,
+        "length": 10,
+        "score": 0.7060000000000001,
+        "method": "sliding_window"
+      },
+      "validation": {
+        "is_validated": false,
+        "citations": 0,
+        "confidence": null
+      }
+    },
+    {
+      "epitope": {
+        "sequence": "GRDIADTTDA",
+        "position": "566-576",
+        "start": 566,
+        "end": 576,
+        "length": 10,
+        "score": 0.6965,
+        "method": "sliding_window"
+      },
+      "validation": {
+        "is_validated": false,
+        "citations": 0,
+        "confidence": null
+      }
+    }
+  ],
+  "antibodies": [
+    {
+      "id": "Ab_1",
+      "epitope_sequence": "CCKFDEDDSE",
+      "epitope_position": "1254-1264",
+      "epitope_score": 0.7395,
+      "heavy_chain": "EVQLVETGGGLVQPGGSLRLSCAASGFELNSYGISWVRQAPGKGPEWVSVIPPMGRRTFYGDSVKGRFTISRDTSTNTVYLQMNSLRVEDTAVYYCAKGRIDGTFDIWGVWGTLVTVSS",
+      "light_chain": "DVMTVSPESVSLGERGKVTISCKSASVLIGVNPYWYWYYPGKGKAGLLLGMMTTGK",
+      "full_sequence": "EVQLVETGGGLVQPGGSLRLSCAASGFELNSYGISWVRQAPGKGPEWVSVIPPMGRRTFYGDSVKGRFTISRDTSTNTVYLQMNSLRVEDTAVYYCAKGRIDGTFDIWGVWGTLVTVSS|DVMTVSPESVSLGERGKVTISCKSASVLIGVNPYWYWYYPGKGKAGLLLGMMTTGK",
+      "target_pkd": 9.5,
+      "validated": false,
+      "citations": 0,
+      "generation_method": "sampling_T0.5",
+      "light_truncated": false,
+      "structure_valid": null
+    },
+    {
+      "id": "Ab_2",
+      "epitope_sequence": "AVEQDKNTQE",
+      "epitope_position": "771-781",
+      "epitope_score": 0.7274999999999999,
+      "heavy_chain": "EVQLVESGGGLVQPGGSRLRIKCASGFTFRWYAMHWVRQAPGKGLEWVYGIFADGGNTRYADSVKGRFTISVDKFASYVYMELELRNEDTAVYYYCAKHMGYQVRETMDVWGQGTTVTVSS",
+      "light_chain": "DVMTQSPSVSAAAPGQKVTISCSGDLKDNIWIAWYVEAWYQQSGDVLLIYDNVPKAWKQGSGSGSKSGTDVPITPITGLQTGDEDVYYIPAWDKPTPYYTFGGGQLTVL",
+      "full_sequence": "EVQLVESGGGLVQPGGSRLRIKCASGFTFRWYAMHWVRQAPGKGLEWVYGIFADGGNTRYADSVKGRFTISVDKFASYVYMELELRNEDTAVYYYCAKHMGYQVRETMDVWGQGTTVTVSS|DVMTQSPSVSAAAPGQKVTISCSGDLKDNIWIAWYVEAWYQQSGDVLLIYDNVPKAWKQGSGSGSKSGTDVPITPITGLQTGDEDVYYIPAWDKPTPYYTFGGGQLTVL",
+      "target_pkd": 9.5,
+      "validated": false,
+      "citations": 0,
+      "generation_method": "sampling_T0.5",
+      "light_truncated": true,
+      "structure_valid": null
+    },
+    {
+      "id": "Ab_3",
+      "epitope_sequence": "DTTDAVRDPQ",
+      "epitope_position": "571-581",
+      "epitope_score": 0.7144999999999999,
+      "heavy_chain": "EVQLVETGGGLVQPGGSLRLSCAASGFTINSYGISWVRQAPGKGPEWVSVIYPGDRRTFFGDSVKGRFTINRDTSTNTVYLQMNSLRVEDTAVYYCTGKVAAGTFDLWGQGTLVTVTVS",
+      "light_chain": "DVMTQMTQSLAVSLGERATISCTLRALGDELSGLAWYEHWYQQKAGDILIYKIYWTRELGIPVPDRFTFSGVHTDFTITTITICLDLICYYYCP|DFPTPLSFGGGTKV",
+      "full_sequence": "EVQLVETGGGLVQPGGSLRLSCAASGFTINSYGISWVRQAPGKGPEWVSVIYPGDRRTFFGDSVKGRFTINRDTSTNTVYLQMNSLRVEDTAVYYCTGKVAAGTFDLWGQGTLVTVTVS|DVMTQMTQSLAVSLGERATISCTLRALGDELSGLAWYEHWYQQKAGDILIYKIYWTRELGIPVPDRFTFSGVHTDFTITTITICLDLICYYYCP|DFPTPLSFGGGTKV",
+      "target_pkd": 9.5,
+      "validated": false,
+      "citations": 0,
+      "generation_method": "sampling_T0.5",
+      "light_truncated": true,
+      "structure_valid": null
+    },
+    {
+      "id": "Ab_4",
+      "epitope_sequence": "DEDDSEPVLK",
+      "epitope_position": "1258-1268",
+      "epitope_score": 0.7060000000000001,
+      "heavy_chain": "EVQLVETGGGLVQPGGSLRLSCAASGFNLNSYGISWVRQAPGKGPEWVSVIPPIGRRTFYADSVKGRFTISVDTSTNTVYLQMNSLRVEDTAVYYCAVGRHGYYYYGWGVWGQGTVTVSS",
+      "light_chain": "DVLAPESPPAVSLGERAPCKSCKSGINVGEREDFWYYQKPGTAPKLLLIYSNDMVLCVPDRFSGSKSGTDFKISGTISSSLEDEDEYYCAVDDPPPLPLPGGGGTKVLI",
+      "full_sequence": "EVQLVETGGGLVQPGGSLRLSCAASGFNLNSYGISWVRQAPGKGPEWVSVIPPIGRRTFYADSVKGRFTISVDTSTNTVYLQMNSLRVEDTAVYYCAVGRHGYYYYGWGVWGQGTVTVSS|DVLAPESPPAVSLGERAPCKSCKSGINVGEREDFWYYQKPGTAPKLLLIYSNDMVLCVPDRFSGSKSGTDFKISGTISSSLEDEDEYYCAVDDPPPLPLPGGGGTKVLI",
+      "target_pkd": 9.5,
+      "validated": false,
+      "citations": 0,
+      "generation_method": "sampling_T0.5",
+      "light_truncated": true,
+      "structure_valid": null
+    },
+    {
+      "id": "Ab_5",
+      "epitope_sequence": "GRDIADTTDA",
+      "epitope_position": "566-576",
+      "epitope_score": 0.6965,
+      "heavy_chain": "EVQLVESGGGLVQPGRSLRLSCAASGFTFRDYAMHWVRQAPGKGLEWYVGITNNGGSIGYADSVKGRFTISRDNANSLYLQMNSLRRAEDTALYYCAKVGRGGGYFDYYWGRA",
+      "light_chain": "ITVTVS|QSVLTQPSLSLSSSVGDRTITITLGSSPSGNNNKNSTSWYISEPSLLLIYNIYTRFSGITRFGSGSGSGSKSRTIQITLLTICNLQNHRYYCATKRGTPYYV",
+      "full_sequence": "EVQLVESGGGLVQPGRSLRLSCAASGFTFRDYAMHWVRQAPGKGLEWYVGITNNGGSIGYADSVKGRFTISRDNANSLYLQMNSLRRAEDTALYYCAKVGRGGGYFDYYWGRA|ITVTVS|QSVLTQPSLSLSSSVGDRTITITLGSSPSGNNNKNSTSWYISEPSLLLIYNIYTRFSGITRFGSGSGSGSKSRTIQITLLTICNLQNHRYYCATKRGTPYYV",
+      "target_pkd": 9.5,
+      "validated": false,
+      "citations": 0,
+      "generation_method": "sampling_T0.5",
+      "light_truncated": true,
+      "structure_valid": null
+    }
+  ]
+}

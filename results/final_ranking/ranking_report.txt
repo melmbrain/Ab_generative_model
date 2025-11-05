@@ -1,0 +1,150 @@
+================================================================================
+ANTIBODY RANKING REPORT
+================================================================================
+
+Total antibodies: 5
+
+────────────────────────────────────────────────────────────────────────────────
+Rank 1: Ab_2 (Score: 0.640)
+────────────────────────────────────────────────────────────────────────────────
+Epitope: AVEQDKNTQE...
+Heavy: 121 aa
+Light: 109 aa
+
+Score Breakdown:
+  Epitope:   0.727
+  Binding:   0.632
+  Diversity: 0.628
+  Structure: 0.500
+
+Binding Details:
+  Charge complementarity: 0.504
+  Hydrophobicity match:   0.764
+  Length compatibility:   0.625
+
+Quality Indicators:
+  ✅ High epitope score
+  ✅ Good binding potential
+
+────────────────────────────────────────────────────────────────────────────────
+Rank 2: Ab_5 (Score: 0.639)
+────────────────────────────────────────────────────────────────────────────────
+Epitope: GRDIADTTDA...
+Heavy: 113 aa
+Light: 109 aa
+
+Score Breakdown:
+  Epitope:   0.697
+  Binding:   0.655
+  Diversity: 0.628
+  Structure: 0.500
+
+Binding Details:
+  Charge complementarity: 0.510
+  Hydrophobicity match:   0.816
+  Length compatibility:   0.625
+
+Quality Indicators:
+  ✅ High epitope score
+  ✅ Good binding potential
+
+────────────────────────────────────────────────────────────────────────────────
+Rank 3: Ab_1 (Score: 0.618)
+────────────────────────────────────────────────────────────────────────────────
+Epitope: CCKFDEDDSE...
+Heavy: 119 aa
+Light: 56 aa
+
+Score Breakdown:
+  Epitope:   0.740
+  Binding:   0.620
+  Diversity: 0.520
+  Structure: 0.500
+
+Binding Details:
+  Charge complementarity: 0.507
+  Hydrophobicity match:   0.717
+  Length compatibility:   0.650
+
+Quality Indicators:
+  ✅ High epitope score
+  ✅ Good binding potential
+
+────────────────────────────────────────────────────────────────────────────────
+Rank 4: Ab_3 (Score: 0.613)
+────────────────────────────────────────────────────────────────────────────────
+Epitope: DTTDAVRDPQ...
+Heavy: 119 aa
+Light: 109 aa
+
+Score Breakdown:
+  Epitope:   0.714
+  Binding:   0.630
+  Diversity: 0.513
+  Structure: 0.500
+
+Binding Details:
+  Charge complementarity: 0.493
+  Hydrophobicity match:   0.770
+  Length compatibility:   0.625
+
+Quality Indicators:
+  ✅ High epitope score
+  ✅ Good binding potential
+
+────────────────────────────────────────────────────────────────────────────────
+Rank 5: Ab_4 (Score: 0.599)
+────────────────────────────────────────────────────────────────────────────────
+Epitope: DEDDSEPVLK...
+Heavy: 120 aa
+Light: 109 aa
+
+Score Breakdown:
+  Epitope:   0.706
+  Binding:   0.599
+  Diversity: 0.513
+  Structure: 0.500
+
+Binding Details:
+  Charge complementarity: 0.482
+  Hydrophobicity match:   0.702
+  Length compatibility:   0.625
+
+Quality Indicators:
+  ✅ High epitope score
+
+================================================================================
+SYNTHESIS RECOMMENDATIONS
+================================================================================
+
+Top 3 Candidates for Synthesis:
+1. Ab_2 (Score: 0.640)
+   Epitope: AVEQDKNTQE...
+   Length: 121 + 109 aa
+2. Ab_5 (Score: 0.639)
+   Epitope: GRDIADTTDA...
+   Length: 113 + 109 aa
+3. Ab_1 (Score: 0.618)
+   Epitope: CCKFDEDDSE...
+   Length: 119 + 56 aa
+
+────────────────────────────────────────────────────────────────────────────────
+Synthesis Criteria Check:
+────────────────────────────────────────────────────────────────────────────────
+
+Ab_2:
+  ✅ Epitope score ≥0.65
+  ✅ Binding score ≥0.5
+  ✅ Diverse sequence
+
+Ab_5:
+  ✅ Epitope score ≥0.65
+  ✅ Binding score ≥0.5
+  ✅ Diverse sequence
+
+Ab_1:
+  ✅ Epitope score ≥0.65
+  ✅ Binding score ≥0.5
+  ✅ Diverse sequence
+
+================================================================================

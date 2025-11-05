@@ -51,17 +51,34 @@ logs/*.jsonl
 # Large data files (download separately from releases)
 data/raw/
 data/processed/
-data/generative/*.json
-!data/generative/data_stats.json
+data/generative/train.json
+data/generative/val.json
+data/generative/test.json
 
 # Validation results - PDB structures are large
 results/*/structures/*.pdb
+
+# Results directories (large intermediate data)
+results/analysis/
+results/comprehensive_validation/
+results/diversity_comparison/
+results/full_pipeline/
+results/pipeline_v3_test/
+results/ranking_test/
+results/test_ranking_results.json
+
+# Benchmark results
+benchmark/
 
 # Temporary files
 tmp/
 temp/
 *.tmp
 test_*.py
+*.json
+!data/**/*.json
+!results/final_ranking/*.json
+!results/synthesis_candidates/*.json
 
 # OS files
 Thumbs.db
